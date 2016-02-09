@@ -2,6 +2,7 @@
 import json
 import random
 import time
+import sys
 data = json.load(open('data.json'))
 
 rows = 'aiueo'
@@ -42,6 +43,8 @@ wcnt = 0
 
 pchr = ''
 
+
+clean_pre = False
 while len(lst) != 0:
     while True:
         idx = random.randint(0, len(lst)-1)
@@ -50,6 +53,11 @@ while len(lst) != 0:
             break
     while True:
         pcnt += 1
+        if clean_pre:
+            sys.stdout.write("\033[F")
+            print '\r',' '*100,'\r',
+        else:
+            clean_pre = True
         print lst[idx]['cnt'], lst[idx]['chr'],':',
     
         ans = raw_input().strip()
@@ -60,7 +68,9 @@ while len(lst) != 0:
         else:
             lst[idx]['cnt'] = 0
             wcnt += 1
+            sys.stdout.write("\033[F")
             print 'Wrong!!!, ans is %s' % lst[idx]['pro']
+            clean_pre = False
 
     if lst[idx]['cnt'] == num:
         del lst[idx]
