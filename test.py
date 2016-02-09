@@ -8,7 +8,7 @@ rows = 'aiueo'
 cols = 'akstnhmyrw'
 
 rc = 'col'
-print 'row or col? :',
+print 'row or col? (Default col):',
 tmp = raw_input().strip()
 if tmp != '':
     rc = tmp
@@ -20,8 +20,13 @@ else:
     print 'input cols:(%s)' % cols,
     cols = raw_input().strip()
 
-print 'pass number:',
-num = int(raw_input())
+print 'pass number(Default 3):',
+num = 3
+tmp = raw_input()
+if tmp != '' and tmp.isdigit():
+    num = int(num)
+    
+    
 
 lst = []
 for row in rows:
@@ -33,21 +38,28 @@ for row in rows:
             lst.append(obj)
 start_time = time.time()
 pcnt = 0
+wcnt = 0
+
 while len(lst) != 0:
-    pcnt += 1
     idx = random.randint(0, len(lst)-1)
-    print lst[idx]['chr'],':',
+    while True:
+        pcnt += 1
+        print lst[idx]['chr'],':',
     
-    ans = raw_input().strip()
+        ans = raw_input().strip()
     
-    if ans == lst[idx]['pro']:
-        lst[idx]['cnt'] += 1
-    else:
-        lst[idx]['cnt'] = 0
-        print 'Wrong!!!, ans is %s' % lst[idx]['pro']
+        if ans == lst[idx]['pro']:
+            lst[idx]['cnt'] += 1
+            break
+        else:
+            lst[idx]['cnt'] = 0
+            wcnt += 1
+            print 'Wrong!!!, ans is %s' % lst[idx]['pro']
 
     if lst[idx]['cnt'] == num:
         del lst[idx]
 end_time = time.time()
 res_time = (float)(end_time - start_time)
-print res_time, res_time/pcnt 
+print 'Total time: %.3f' % res_time
+print 'Time per word: %.3f' % (res_time/pcnt)
+print 'Accuracy: %.3f %%' % (100-float(wcnt)/pcnt*100)
