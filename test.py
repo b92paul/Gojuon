@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import json
 import random
+import time
 data = json.load(open('data.json'))
 
 rows = 'aiueo'
@@ -9,7 +10,7 @@ cols = 'akstnhmyrw'
 rc = 'col'
 print 'row or col? :',
 tmp = raw_input().strip()
-if tmp == '':
+if tmp != '':
     rc = tmp
 
 if rc == 'row':
@@ -30,8 +31,10 @@ for row in rows:
             obj['cnt'] = 0
             #print obj
             lst.append(obj)
-
+start_time = time.time()
+pcnt = 0
 while len(lst) != 0:
+    pcnt += 1
     idx = random.randint(0, len(lst)-1)
     print lst[idx]['chr'],':',
     
@@ -45,3 +48,6 @@ while len(lst) != 0:
 
     if lst[idx]['cnt'] == num:
         del lst[idx]
+end_time = time.time()
+res_time = (float)(end_time - start_time)
+print res_time, res_time/pcnt 
