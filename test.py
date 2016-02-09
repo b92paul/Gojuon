@@ -25,8 +25,6 @@ num = 3
 tmp = raw_input()
 if tmp != '' and tmp.isdigit():
     num = int(num)
-    
-    
 
 lst = []
 for row in rows:
@@ -66,6 +64,10 @@ while len(lst) != 0:
         del lst[idx]
 end_time = time.time()
 res_time = (float)(end_time - start_time)
+if pcnt == 0:
+    print 'Please input rows or cols for the test!'
+    exit(0)
+
 print 'Total time: %.3f' % res_time
 print 'Time per word: %.3f' % (res_time/pcnt)
 print 'Accuracy: %.3f %%' % (100-float(wcnt)/pcnt*100)
