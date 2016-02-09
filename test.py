@@ -40,8 +40,14 @@ start_time = time.time()
 pcnt = 0
 wcnt = 0
 
+pchr = ''
+
 while len(lst) != 0:
-    idx = random.randint(0, len(lst)-1)
+    while True:
+        idx = random.randint(0, len(lst)-1)
+        if len(lst) == 1 or lst[idx]['chr'] != pchr:
+            pchr = lst[idx]['chr']
+            break
     while True:
         pcnt += 1
         print lst[idx]['chr'],':',
