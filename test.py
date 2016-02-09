@@ -24,7 +24,10 @@ print 'pass number(Default 3):',
 num = 3
 tmp = raw_input()
 if tmp != '' and tmp.isdigit():
-    num = int(num)
+    num = int(tmp)
+else:
+    print 'number format wrong QQ'
+    exit(0)
 
 lst = []
 for row in rows:
@@ -48,7 +51,7 @@ while len(lst) != 0:
             break
     while True:
         pcnt += 1
-        print lst[idx]['chr'],':',
+        print lst[idx]['cnt'], lst[idx]['chr'],':',
     
         ans = raw_input().strip()
     
