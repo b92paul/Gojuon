@@ -26,8 +26,7 @@ tmp = raw_input()
 if tmp != '' and tmp.isdigit():
     num = int(tmp)
 else:
-    print 'number format wrong QQ'
-    exit(0)
+    print 'Using default option ...'
 
 lst = []
 for row in rows:
