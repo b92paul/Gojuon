@@ -69,7 +69,7 @@ while len(lst) != 0:
             lst[idx]['cnt'] = 0
             wcnt += 1
             sys.stdout.write("\033[F")
-            print 'Wrong!!!, ans is %s' % lst[idx]['pro']
+            print 'Wrong!!!, %s is %s' % (lst[idx]['chr'], lst[idx]['pro'])
             clean_pre = False
 
     if lst[idx]['cnt'] == num:
